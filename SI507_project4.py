@@ -44,13 +44,18 @@ for s in state_links:
 all_list = []
 for state in state_pages:
     each_site = state.find_all('li', {'class':'clearfix'})
-    each_site_list = []
     for site in each_site:
+        each_site_list = []
+        if site.find('h3') == None:
+            continue
+
         if site.find('h3'):
             site_name = site.find('h3')
             # print(site_name.text)
             each_site_list.append(site_name.text)
-        if site.find('h2'):
+        if len(site.find('h2')) == 0:
+            each_site_list.append('N/A')
+        else:
             site_type = site.find('h2')
             # print(site_type.text)
             each_site_list.append(site_type.text)
@@ -58,20 +63,12 @@ for state in state_pages:
             site_desc = site.find('p')
             # print(site_desc.text)
             each_site_list.append(site_desc.text)
-        if site.find('h4'):
+        if len(site.find('h4')) == 0:
+            each_site_list.append('N/A')
+        else:
             location = site.find('h4')
             # print(location.text)
             each_site_list.append(location.text)
-    all_list.append(each_site_list)
-
-# print(len(all_list))
-
-
-
-
-
-
-# scores_diction = {}
-# for row in lines[1:]:
-#     values = row.strip().split(',')
-#     scores_diction[values[0]] = [values[1], values[2], values[3], values[4]]
+        # print(each_site_list)
+        all_list.append(each_site_list)
+# print(all_list)
