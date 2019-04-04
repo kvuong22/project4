@@ -54,7 +54,7 @@ for state in state_pages:
             # print(site_name.text)
             each_site_list.append(site_name.text)
         if len(site.find('h2')) == 0:
-            each_site_list.append('N/A')
+            each_site_list.append('Not Available')
         else:
             site_type = site.find('h2')
             # print(site_type.text)
@@ -62,13 +62,12 @@ for state in state_pages:
         if site.find('p'):
             site_desc = site.find('p')
             # print(site_desc.text)
-            each_site_list.append(site_desc.text)
+            each_site_list.append(site_desc.text.replace('\n',' '))
         if len(site.find('h4')) == 0:
-            each_site_list.append('N/A')
+                each_site_list.append('Not Available')
         else:
             location = site.find('h4')
             # print(location.text)
             each_site_list.append(location.text)
         # print(each_site_list)
         all_list.append(each_site_list)
-# print(all_list)
